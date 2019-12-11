@@ -1,0 +1,14 @@
+body{
+    background-color: lightblue;
+}
+.gallery{
+    height: 80vh;
+}
+.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    grid-gap: 10px;
+}
+.galleryImage{
+    max-height:100px;
+}
