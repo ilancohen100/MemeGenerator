@@ -11,4 +11,14 @@ body{
 }
 .galleryImage{
     max-height:100px;
+    cursor: pointer;
+}
+.canvas-container{
+    background-color: lightgoldenrodyellow;
+    padding: 10px;
+}
+.my-canvas {
+    margin: 20px auto;
+    border: 1px solid blue;
+    display: block;
 }

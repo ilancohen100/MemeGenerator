@@ -1,37 +1,35 @@
-var gKeywords = {'happy': 12,'funny puk': 1}
-var gImgs = [{id: 1, url: 'img/popo.jpg', keywords: ['happy']}];
-var gMeme = { selectedImgId: 5, selectedTxtIdx: 0, txts:
+
+var gCurrMeme = { selectedImgId: 5, selectedTxtIdx: 0, txts:
      [ { line: 'I never eat Falafel', size: 20, align: 'left', color: 'red' } ]}
-var gNextID = 0;
-function createImg(path,keywords) {
-    var image = {
-        ID:gNextID++,
-        path,
-        keywords
+var gMemes=[];
+var gNextMemeID;
+function createMeme(selectedImgId,selectedTxtIdx,txts) {
+    var meme = {
+        ID:gNextID,
+        selectedImgId,
+        selectedTxtIdx,
+        txts
     }
-    saveToStorage('nextID', gNextID);
-    return image;
+   // saveToStorage('meme', gNextMemeID);
+    return meme;
 }
 
-function saveImages() {
-    saveToStorage('images', gImgs);
+function saveMemes() {
+    saveToStorage('memes', gMemes);
 }
 
-function loadData() {
-    gImgs = loadFromStorage('images', []);
-    gNextID = loadFromStorage('nextID', 0)
-    if (gImgs.length === 0) createImages();
+function loadMemesData() {
+    gMemes = loadFromStorage('memes', []);
+    gNextMemeID = loadFromStorage('nextMemeID', 0)
+    if (gNextMemeID.length === 0) createMemes();
 }
 
-function createImages() {
-    gImgs = [];
-    gImgs.push(createImg('img/meme-imgs (square)/003.jpg',['trump','stupid']));
-    gImgs.push(createImg('img/meme-imgs (square)/004.jpg',['trump','stupid']));
-    gImgs.push(createImg('img/meme-imgs (square)/005.jpg',['trump','stupid']));
-    gImgs.push(createImg('img/meme-imgs (square)/006.jpg',['trump','stupid']));  
+function createMemes() {
+    gMemes = [];
+    gMemes.push(gCurrMeme);
 }
 
-function getImagesToRender() {
+function getCurrMemeToRender() {
     // var filteredTodos = gTodos.filter(function (todo) {
     //     return ((gStatusFilter === 'all') ||
     //         (gStatusFilter === 'active' && !todo.isDone) ||
@@ -42,19 +40,21 @@ function getImagesToRender() {
     //     return a[gStatusSort]>b[gStatusSort]? 1 : a[gStatusSort]< b[gStatusSort]? -1 : 0;
     // })
     // return SortedTodos;
-    return gImgs;
+    return gCurrMeme;
 }
-
-function findImgById(imgID) {
-    return gImgs.find(function (item) {
-        return item.ID === imgID;
-    });
+function setCurrMemeData(selectedImgId,selectedTxtIdx,txts){
+    gCurrMeme = createMeme(selectedImgId,selectedTxtIdx,txts);
 }
-function findImgIndexById(imgID) {
-    return gImgs.findIndex(function (item) {
-        return item.ID === imgID;
-    });
-}
+// function findImgById(imgID) {
+//     return gImgs.find(function (item) {
+//         return item.ID === imgID;
+//     });
+// }
+// function findImgIndexById(imgID) {
+//     return gImgs.findIndex(function (item) {
+//         return item.ID === imgID;
+//     });
+// }
 
 // function addTodo(title,importance) {
 //     var newTodo = createTodo(title,importance);

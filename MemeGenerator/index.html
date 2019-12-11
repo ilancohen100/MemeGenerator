@@ -13,11 +13,22 @@
             main
             <div class="gallery grid">
             </div>
+            <div class="inputProperties">
+                <input class = "input-text" type="text">
+            </div>
+            <div class="canvas-container">
+                <canvas class="my-canvas" width="500" height="300" 
+                    onmousedown="onMouseDown(event)"></canvas>
+                    <!-- onmousemove = "onMouseMove(event)"
+                    onmouseout = "onMouseOut(event)"
+                    onmouseup = "onMouseUp(event)"> -->
+            </div>
             <div class="alertSpan"></div>
         </main>
         <footer>footer</footer>
         <script src="js/storageService.js"></script>
         <script src="js/galleryService.js"></script>
+        <script src="js/memeService.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>

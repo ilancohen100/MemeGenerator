@@ -1,11 +1,10 @@
 var gKeywords = {'happy': 12,'funny puk': 1}
 var gImgs = [{id: 1, url: 'img/popo.jpg', keywords: ['happy']}];
-var gMeme = { selectedImgId: 5, selectedTxtIdx: 0, txts:
-     [ { line: 'I never eat Falafel', size: 20, align: 'left', color: 'red' } ]}
 var gNextID = 0;
+var gCurrImgId ;
 function createImg(path,keywords) {
     var image = {
-        ID:gNextID++,
+        ID:(gNextID++).toString(),
         path,
         keywords
     }
@@ -16,8 +15,13 @@ function createImg(path,keywords) {
 function saveImages() {
     saveToStorage('images', gImgs);
 }
-
-function loadData() {
+function setCurrImgId(id){
+    gCurrImgId = id;
+}
+function getCurrImgId(){
+    return gCurrImgId;
+}
+function loadGalleryData() {
     gImgs = loadFromStorage('images', []);
     gNextID = loadFromStorage('nextID', 0)
     if (gImgs.length === 0) createImages();
@@ -46,6 +50,7 @@ function getImagesToRender() {
 }
 
 function findImgById(imgID) {
+    
     return gImgs.find(function (item) {
         return item.ID === imgID;
     });
